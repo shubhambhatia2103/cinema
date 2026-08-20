@@ -6,3 +6,11 @@ out
 *.log
 .DS_Store
 *.tsbuildinfo
+
+# Letterboxd export: only diary.csv is meant to be public. If you drop
+# the whole unzipped export folder into data/, everything else in it
+# (watchlist, comments, likes, reviews, ...) stays untracked.
+data/**
+!data/**/
+!data/diary.csv
+!data/**/diary.csv

@@ -14,10 +14,16 @@ TMDB and cached by Next.js's data cache.
 ## Updating your log
 
 1. On Letterboxd: **Settings → Data → Export Your Data**. This downloads a zip.
-2. From that zip, take `diary.csv` and replace `data/diary.csv` in this repo with it.
+2. Unzip it and drop the whole folder into `data/` — no need to dig out individual files.
+   `lib/letterboxd.ts` searches `data/` for a file named `diary.csv` and uses whatever it finds.
 3. Commit and push (or redeploy) — the grid rebuilds from the new file.
 
-The expected columns (Letterboxd's own export format) are:
+Only `diary.csv` is ever read, and it's the only file from an export that `.gitignore` lets
+into the repo — the rest (`watchlist.csv`, `comments.csv`, `likes/`, `reviews.csv`, ...) stays
+on your machine, untracked, since that's more "private activity" than "movies I've watched."
+If you'd rather commit the whole export as-is, adjust the `data/**` rules in `.gitignore`.
+
+The expected columns (Letterboxd's own diary export format) are:
 
 ```
 Date,Name,Year,Letterboxd URI,Rating,Rewatch,Tags,Watched Date
