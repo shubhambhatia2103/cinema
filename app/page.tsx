@@ -33,7 +33,7 @@ export default async function Home() {
         <p className="mt-3 max-w-xl text-sm text-muted">
           A running log of everything I&apos;ve watched, exported from my{" "}
           <a
-            href="https://letterboxd.com"
+            href="https://letterboxd.com/cinemaormai/"
             target="_blank"
             rel="noreferrer"
             className="underline decoration-white/20 underline-offset-2 hover:text-ink"
