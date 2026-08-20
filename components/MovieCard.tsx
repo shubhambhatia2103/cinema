@@ -25,7 +25,7 @@ function formatDate(iso: string) {
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <article className="group relative">
-      <div className="relative aspect-[2/3] overflow-hidden rounded-md bg-card ring-1 ring-white/5">
+      <div className="relative aspect-[2/3] overflow-hidden rounded-md bg-card ring-1 ring-ink/10">
         {movie.posterUrl ? (
           <Image
             src={movie.posterUrl}
@@ -44,7 +44,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         )}
 
         {movie.rewatch && (
-          <span className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-0.5 text-[10px] uppercase tracking-wide text-ink/80">
+          <span className="absolute left-2 top-2 rounded-full bg-ink/80 px-2 py-0.5 text-[10px] uppercase tracking-wide text-paper/90">
             Rewatch
           </span>
         )}

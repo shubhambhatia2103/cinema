@@ -1,19 +1,8 @@
 import { getMovies } from "@/lib/movies";
-import MovieCard from "@/components/MovieCard";
-
-function groupByYear(movies: Awaited<ReturnType<typeof getMovies>>) {
-  const groups = new Map<string, typeof movies>();
-  for (const movie of movies) {
-    const year = movie.watchedDate.slice(0, 4) || "Undated";
-    if (!groups.has(year)) groups.set(year, []);
-    groups.get(year)!.push(movie);
-  }
-  return [...groups.entries()];
-}
+import MovieGrid from "@/components/MovieGrid";
 
 export default async function Home() {
   const movies = await getMovies();
-  const years = groupByYear(movies);
   const rated = movies.filter((m) => m.rating != null);
   const avgRating = rated.length
     ? (
@@ -23,7 +12,7 @@ export default async function Home() {
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-      <header className="mb-12 border-b border-white/10 pb-8">
+      <header className="mb-12 border-b border-ink/10 pb-8">
         <p className="text-xs uppercase tracking-[0.2em] text-muted">
           shubhambhatia.in
         </p>
@@ -36,7 +25,7 @@ export default async function Home() {
             href="https://letterboxd.com/cinemaormai/"
             target="_blank"
             rel="noreferrer"
-            className="underline decoration-white/20 underline-offset-2 hover:text-ink"
+            className="underline decoration-ink/20 underline-offset-2 hover:text-ink"
           >
             Letterboxd
           </a>{" "}
@@ -66,18 +55,7 @@ export default async function Home() {
           <code className="text-ink/80">data/diary.csv</code>.
         </p>
       ) : (
-        <div className="space-y-12">
-          {years.map(([year, entries]) => (
-            <section key={year}>
-              <h2 className="mb-4 font-serif text-2xl text-ink/90">{year}</h2>
-              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
-                {entries.map((movie) => (
-                  <MovieCard key={movie.slug} movie={movie} />
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+        <MovieGrid movies={movies} />
       )}
     </main>
   );
