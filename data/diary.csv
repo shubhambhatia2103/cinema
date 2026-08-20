@@ -1,13 +1,113 @@
 Date,Name,Year,Letterboxd URI,Rating,Rewatch,Tags,Watched Date
-2026-08-14,Perfect Days,2023,https://boxd.it/example1,4.5,,,2026-08-14
-2026-08-09,Oldboy,2003,https://boxd.it/example2,5,Yes,noir,2026-08-09
-2026-07-30,Past Lives,2023,https://boxd.it/example3,4.5,,,2026-07-30
-2026-07-21,"Paris, Texas",1984,https://boxd.it/example4,5,,,2026-07-21
-2026-07-10,The Grand Budapest Hotel,2014,https://boxd.it/example5,4,Yes,comfort watch,2026-07-10
-2026-06-28,Aftersun,2022,https://boxd.it/example6,4.5,,,2026-06-28
-2026-06-15,In the Mood for Love,2000,https://boxd.it/example7,5,,,2026-06-15
-2026-05-30,Everything Everywhere All at Once,2022,https://boxd.it/example8,4,,,2026-05-30
-2026-05-12,Spirited Away,2001,https://boxd.it/example9,5,Yes,ghibli,2026-05-12
-2026-04-22,The Zone of Interest,2023,https://boxd.it/example10,4.5,,,2026-04-22
-2026-03-18,Amelie,2001,https://boxd.it/example11,4,,,2026-03-18
-2026-02-14,Her,2013,https://boxd.it/example12,4.5,,,2026-02-14
+2026-05-14,Jab We Met,2007,https://boxd.it/em4PY5,4,,,2016-07-15
+2026-04-25,Madaari,2016,https://boxd.it/e6aBSP,4,,,2018-06-23
+2026-05-15,Chhichhore,2019,https://boxd.it/emmakT,4.5,,,2019-11-22
+2026-04-25,John Wick,2014,https://boxd.it/e6aFtz,4,,,2020-03-07
+2026-04-25,John Wick: Chapter 2,2017,https://boxd.it/e6aGc5,4,,,2020-04-30
+2026-04-25,John Wick: Chapter 3 – Parabellum,2019,https://boxd.it/e6aGTN,4,,,2020-06-10
+2025-09-11,Joker,2019,https://boxd.it/b2n7zp,4.5,,,2020-12-23
+2025-09-11,Dead Poets Society,1989,https://boxd.it/b2n7IB,4,,,2021-03-17
+2026-05-15,(500) Days of Summer,2009,https://boxd.it/emlCgN,4,,,2021-05-14
+2026-05-14,Superbad,2007,https://boxd.it/em4ISp,4.5,,,2021-06-02
+2026-05-09,"Crazy, Stupid, Love.",2011,https://boxd.it/ei89kz,3.5,,,2021-08-29
+2026-05-14,American Psycho,2000,https://boxd.it/elEJnl,4,,,2022-06-08
+2025-09-11,The Dark Knight,2008,https://boxd.it/b2n7fz,5,,,2022-07-17
+2025-09-11,Fight Club,1999,https://boxd.it/b2n5P1,4,,,2022-10-29
+2026-05-14,Brokeback Mountain,2005,https://boxd.it/elEGU7,4,,,2023-05-11
+2026-05-17,Manchester by the Sea,2016,https://boxd.it/enOF3p,3.5,,,2023-07-07
+2025-09-11,The Wolf of Wall Street,2013,https://boxd.it/b2n6ED,4,,,2023-07-18
+2024-01-25,Atonement,2007,https://boxd.it/5FSEoJ,5,Yes,soap2day,2023-12-31
+2024-01-28,Kama Sutra: A Tale of Love,1996,https://boxd.it/5HHOAL,5,,,2024-01-28
+2026-04-25,John Wick: Chapter 4,2023,https://boxd.it/e6aHTz,4,,,2024-03-13
+2026-05-14,Silver Linings Playbook,2012,https://boxd.it/em4QFX,4,,,2024-05-16
+2026-05-14,Masaan,2015,https://boxd.it/em4OOD,4,,,2024-05-23
+2026-05-14,Demolition,2015,https://boxd.it/elEGkN,3.5,,,2024-07-18
+2026-05-14,Waves,2019,https://boxd.it/em4FOz,4,,,2024-09-04
+2026-05-05,Shutter Island,2010,https://boxd.it/eeImTj,5,,,2024-09-09
+2026-05-11,Shoplifters,2018,https://boxd.it/ejejGh,4,,,2024-09-25
+2026-05-14,Road House,2024,https://boxd.it/elEHv3,3,,,2024-10-09
+2026-05-14,End of Watch,2012,https://boxd.it/elEFJH,3.5,,,2024-11-22
+2026-05-14,Rockstar,2011,https://boxd.it/em4Pl3,4,,,2024-11-22
+2026-05-15,Anyone But You,2023,https://boxd.it/emmcHF,2.5,,,2025-05-06
+2026-05-09,Meet Joe Black,1998,https://boxd.it/ei8aed,4,,,2025-06-14
+2025-07-09,The Shawshank Redemption,1994,https://boxd.it/agH2X5,4,,,2025-07-09
+2025-07-09,The Green Mile,1999,https://boxd.it/agH3MR,3.5,,,2025-07-09
+2025-07-09,Parasite,2019,https://boxd.it/agH4nt,3.5,,,2025-07-09
+2025-07-09,Forrest Gump,1994,https://boxd.it/agH4Wt,4.5,,,2025-07-09
+2025-07-09,GoodFellas,1990,https://boxd.it/agH5td,4.5,,,2025-07-09
+2025-07-09,Dumb and Dumber,1994,https://boxd.it/agH9XV,4,,,2025-07-09
+2025-07-09,Dumb and Dumber To,2014,https://boxd.it/agHaKX,4,,,2025-07-09
+2025-07-09,Due Date,2010,https://boxd.it/agHbp7,3.5,,,2025-07-09
+2025-07-16,Trainspotting,1996,https://boxd.it/alyzsL,4,,,2025-07-15
+2025-09-08,Laal Rang,2016,https://boxd.it/aZZhfj,4.5,,,2025-09-06
+2025-09-08,A Serbian Film,2010,https://boxd.it/aZZixN,4,,,2025-09-07
+2025-09-11,Pulp Fiction,1994,https://boxd.it/b2mZCv,4,,,2025-09-11
+2025-09-11,Trainspotting,1996,https://boxd.it/b2n1vB,4,Yes,,2025-09-11
+2025-09-11,Eternal Sunshine of the Spotless Mind,2004,https://boxd.it/b2n1Nb,3.5,,,2025-09-11
+2025-09-11,F1,2025,https://boxd.it/b2n1YD,3.5,,,2025-09-11
+2025-09-11,Superman,2025,https://boxd.it/b2n26d,3,,,2025-09-11
+2025-09-11,The Fantastic 4: First Steps,2025,https://boxd.it/b2n2oB,3,,,2025-09-11
+2025-09-11,Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan,2006,https://boxd.it/b2n3Lh,5,,,2025-09-11
+2025-09-11,The Dictator,2012,https://boxd.it/b2n3XH,5,,,2025-09-11
+2025-09-11,The Hangover,2009,https://boxd.it/b2n457,5,,,2025-09-11
+2025-09-11,The Hangover Part II,2011,https://boxd.it/b2n4dZ,3,,,2025-09-11
+2025-09-11,The Hangover Part III,2013,https://boxd.it/b2n4kh,3,,,2025-09-11
+2025-09-11,Good Will Hunting,1997,https://boxd.it/b2n61B,4,,,2025-09-11
+2025-09-11,The Godfather,1972,https://boxd.it/b2n6cz,5,,,2025-09-11
+2025-09-11,Catch Me If You Can,2002,https://boxd.it/b2n6tP,4,,,2025-09-11
+2025-09-11,Forrest Gump,1994,https://boxd.it/b2n6S1,4,Yes,,2025-09-11
+2025-09-11,The Truman Show,1998,https://boxd.it/b2n75f,3.5,,,2025-09-11
+2025-09-26,The Godfather Part II,1974,https://boxd.it/baVRcB,5,,,2025-09-25
+2025-09-26,The Batman,2022,https://boxd.it/baVSjj,3.5,,,2025-09-25
+2025-09-26,Spider-Man: Into the Spider-Verse,2018,https://boxd.it/baVTM7,4,,,2025-09-26
+2025-09-28,Bandit Queen,1994,https://boxd.it/bcdCZ9,4.5,,,2025-09-28
+2025-10-01,Green Book,2018,https://boxd.it/be74zx,3.5,,,2025-10-01
+2025-10-01,Phantom Thread,2017,https://boxd.it/be75KL,3,,,2025-10-01
+2025-10-03,Two,1965,https://boxd.it/bfwoXj,3.5,,,2025-10-03
+2025-11-16,Vaastav,1999,https://boxd.it/bJpDLN,3,,,2025-11-16
+2025-11-16,Dev.D,2009,https://boxd.it/bJpEdR,3.5,,,2025-11-16
+2026-05-14,Pulp Fiction,1994,https://boxd.it/em5eit,4,Yes,,2026-01-08
+2026-02-11,Homebound,2025,https://boxd.it/d57P71,4,,,2026-02-11
+2026-02-11,One Flew Over the Cuckoo's Nest,1975,https://boxd.it/d57Qz1,4,,,2026-02-11
+2026-04-20,Past Lives,2023,https://boxd.it/e2Huy9,4.5,,,2026-04-20
+2026-04-20,Amal,2007,https://boxd.it/e2HwgV,3.5,,,2026-04-20
+2026-04-24,Project Hail Mary,2026,https://boxd.it/e61QjH,4,,,2026-04-21
+2026-04-24,The Martian,2015,https://boxd.it/e61RhR,4,,,2026-04-24
+2026-05-05,Zodiac,2007,https://boxd.it/eeFzB7,4,,,2026-05-04
+2026-05-05,The Holdovers,2023,https://boxd.it/eeFBWB,3.5,,,2026-05-04
+2026-05-05,Little Women,2019,https://boxd.it/eeHNEX,4,,,2026-05-04
+2026-05-05,Inglourious Basterds,2009,https://boxd.it/eeI4pZ,5,,,2026-05-04
+2026-05-05,Django Unchained,2012,https://boxd.it/eeI59t,4,,,2026-05-04
+2026-05-05,Reservoir Dogs,1992,https://boxd.it/eeI61Z,4,,,2026-05-04
+2026-05-05,The Departed,2006,https://boxd.it/eeIlop,3.5,,,2026-05-04
+2026-05-08,Without a Paddle,2004,https://boxd.it/egUQcB,3,,,2026-05-08
+2026-05-09,Hum Dil De Chuke Sanam,1999,https://boxd.it/ehF9d1,3,,,2026-05-08
+2026-05-13,Troy,2004,https://boxd.it/el4hSX,4,,,2026-05-12
+2026-05-13,Wicked Little Letters,2023,https://boxd.it/els9Wl,3,,,2026-05-13
+2026-05-14,Prisoners,2013,https://boxd.it/elzu5r,4,,,2026-05-13
+2026-05-14,Love & Other Drugs,2010,https://boxd.it/elPNlZ,3,,,2026-05-14
+2026-05-15,The Secret Life of Walter Mitty,2013,https://boxd.it/emepyv,4.5,,,2026-05-14
+2026-05-15,Perfect Days,2023,https://boxd.it/emtw01,2.5,,,2026-05-14
+2026-05-15,Joyland,2022,https://boxd.it/emO4dX,3.5,,,2026-05-15
+2026-05-15,Me Before You,2016,https://boxd.it/emV1av,3,,,2026-05-15
+2026-05-16,The Notebook,2004,https://boxd.it/en2xaL,3.5,,,2026-05-15
+2026-05-16,Memories of Murder,2003,https://boxd.it/enENQp,4,,,2026-05-16
+2026-05-16,Oldboy,2003,https://boxd.it/enJeZV,4,,,2026-05-16
+2026-05-17,10 Things I Hate About You,1999,https://boxd.it/enVhBV,3,,,2026-05-16
+2026-05-17,Pretty Woman,1990,https://boxd.it/eo1LYH,3,,,2026-05-16
+2026-05-17,The Drama,2026,https://boxd.it/eozkM3,2.5,,,2026-05-17
+2026-05-17,The Proposal,2009,https://boxd.it/eoHJx9,3,,,2026-05-17
+2026-05-18,Ocean's Eight,2018,https://boxd.it/eoM6Qr,3.5,,,2026-05-17
+2026-05-18,21 & Over,2013,https://boxd.it/epEAyP,4,,,2026-05-18
+2026-05-19,The Devil Wears Prada,2006,https://boxd.it/epKJQv,2.5,,,2026-05-18
+2026-05-20,Pineapple Express,2008,https://boxd.it/equH9B,4.5,Yes,,2026-05-19
+2026-05-20,Project X,2012,https://boxd.it/eqHF6B,3,,,2026-05-19
+2026-05-21,We're the Millers,2013,https://boxd.it/erhSKB,2.5,Yes,,2026-05-20
+2026-05-23,Superbad,2007,https://boxd.it/esF4ub,4.5,Yes,,2026-05-22
+2026-05-23,Ghost Town,2008,https://boxd.it/etkFgx,2.5,,,2026-05-23
+2026-05-24,Good Boys,2019,https://boxd.it/etEU8D,2.5,,,2026-05-23
+2026-05-25,Mystic River,2003,https://boxd.it/eurmWd,4.5,,,2026-05-24
+2026-06-24,The Intern,2015,https://boxd.it/eVjt9p,2,,,2026-06-24
+2026-07-09,Kai Po Che!,2013,https://boxd.it/f9jzHj,4,Yes,,2026-07-09
+2026-07-09,The Hunt,2012,https://boxd.it/f9jAsz,4,Yes,,2026-07-09
+2026-07-11,The Batman,2022,https://boxd.it/fannhb,3.5,Yes,,2026-07-10
