@@ -54,9 +54,6 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         {movie.posterUrl && (
           <p className="truncate text-sm text-ink/80">{movie.name}</p>
         )}
-        {movie.director && (
-          <p className="truncate text-xs text-muted">{movie.director}</p>
-        )}
         <div className="flex items-center justify-between gap-2">
           <span className="text-xs text-muted">
             {formatDate(movie.watchedDate)}
