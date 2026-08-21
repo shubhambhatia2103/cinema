@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getMovies } from "@/lib/movies";
 import MovieGrid from "@/components/MovieGrid";
 
@@ -13,9 +14,17 @@ export default async function Home() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <header className="mb-12 border-b border-ink/10 pb-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted">
-          shubhambhatia.in
-        </p>
+        <div className="flex items-baseline justify-between">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted">
+            shubhambhatia.in
+          </p>
+          <Link
+            href="/stats"
+            className="text-xs uppercase tracking-[0.2em] text-muted underline decoration-ink/20 underline-offset-2 hover:text-ink"
+          >
+            Stats
+          </Link>
+        </div>
         <h1 className="mt-2 font-serif text-4xl text-ink sm:text-5xl">
           Cinema
         </h1>
