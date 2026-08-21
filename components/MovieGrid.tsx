@@ -14,11 +14,6 @@ function groupByYear(movies: Movie[]) {
   return [...groups.entries()];
 }
 
-function distinctYears(movies: Movie[]) {
-  const years = new Set(movies.map((m) => m.watchedDate.slice(0, 4)).filter(Boolean));
-  return [...years].sort().reverse();
-}
-
 function Toggle({
   active,
   onClick,
@@ -46,23 +41,18 @@ function Toggle({
 
 export default function MovieGrid({ movies }: { movies: Movie[] }) {
   const [query, setQuery] = useState("");
-  const [year, setYear] = useState("");
   const [topRatedOnly, setTopRatedOnly] = useState(false);
-  const [rewatchOnly, setRewatchOnly] = useState(false);
 
   const trimmed = query.trim().toLowerCase();
-  const isFiltered = Boolean(trimmed || year || topRatedOnly || rewatchOnly);
-  const years = useMemo(() => distinctYears(movies), [movies]);
+  const isFiltered = Boolean(trimmed || topRatedOnly);
 
   const filtered = useMemo(() => {
     return movies.filter((m) => {
       if (trimmed && !m.name.toLowerCase().includes(trimmed)) return false;
-      if (year && m.watchedDate.slice(0, 4) !== year) return false;
       if (topRatedOnly && (m.rating == null || m.rating < 4)) return false;
-      if (rewatchOnly && !m.rewatch) return false;
       return true;
     });
-  }, [movies, trimmed, year, topRatedOnly, rewatchOnly]);
+  }, [movies, trimmed, topRatedOnly]);
 
   const groupedAll = useMemo(() => groupByYear(movies), [movies]);
 
@@ -77,24 +67,8 @@ export default function MovieGrid({ movies }: { movies: Movie[] }) {
           aria-label="Search films"
           className="w-full max-w-xs rounded-md border border-ink/15 bg-card px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-ink/30 focus:outline-none"
         />
-        <select
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-          aria-label="Filter by year"
-          className="rounded-md border border-ink/15 bg-card px-3 py-2 text-sm text-ink focus:border-ink/30 focus:outline-none"
-        >
-          <option value="">All years</option>
-          {years.map((y) => (
-            <option key={y} value={y}>
-              {y}
-            </option>
-          ))}
-        </select>
         <Toggle active={topRatedOnly} onClick={() => setTopRatedOnly((v) => !v)}>
           4★+
-        </Toggle>
-        <Toggle active={rewatchOnly} onClick={() => setRewatchOnly((v) => !v)}>
-          Rewatches
         </Toggle>
       </div>
 

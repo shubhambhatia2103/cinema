@@ -52,7 +52,7 @@ One extra API call per film (cached), same `TMDB_API_KEY` already set on Vercel.
 
 - [x] **Phase 1 — Make the existing data visible.** Zero new infrastructure.
   - [x] Reviews surfaced on cards (`reviews.csv`)
-  - [x] Filters: year, 4★+, rewatch-only
+  - [x] Filters: 4★+ (year and rewatch-only were dropped — year filtering has a different design planned for a later phase, and rewatch wasn't useful enough to keep)
 - [x] **Phase 2 — Ship the stats page.** Pure `diary.csv` math, no new API load.
   - [x] Rating histogram, decade breakdown, watch-day pattern
   - [x] Binge-month timeline (as top-5 busiest months), rewatch rate, highs/lows
