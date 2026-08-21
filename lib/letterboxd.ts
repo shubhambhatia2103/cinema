@@ -16,23 +16,23 @@ function slugify(name: string, year: number, watchedDate: string): string {
 
 /**
  * Letterboxd's export zip usually unpacks as a folder full of CSVs
- * (diary, ratings, watchlist, comments, likes/...). We only want
- * diary.csv, wherever it landed inside data/ — so a whole unzipped
- * export folder can be dropped in without the user hunting for the
- * one file we actually read.
+ * (diary, ratings, watchlist, comments, likes/...). We only want a
+ * couple of those, wherever they land inside data/ — so a whole
+ * unzipped export folder can be dropped in without the user hunting
+ * for the specific files we actually read.
  */
-function findDiaryCsv(dir: string, depth: number): string | null {
+function findCsv(dir: string, depth: number, filename: string): string | null {
   if (depth > MAX_SEARCH_DEPTH || !fs.existsSync(dir)) return null;
 
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
-    if (entry.isFile() && entry.name === "diary.csv") {
+    if (entry.isFile() && entry.name === filename) {
       return path.join(dir, entry.name);
     }
   }
   for (const entry of entries) {
     if (entry.isDirectory()) {
-      const found = findDiaryCsv(path.join(dir, entry.name), depth + 1);
+      const found = findCsv(path.join(dir, entry.name), depth + 1, filename);
       if (found) return found;
     }
   }
@@ -45,7 +45,7 @@ function findDiaryCsv(dir: string, depth: number): string | null {
  * so you can drop the whole unzipped export folder in as-is — see README.
  */
 export function loadDiary(): DiaryEntry[] {
-  const dataPath = findDiaryCsv(DATA_DIR, 0);
+  const dataPath = findCsv(DATA_DIR, 0, "diary.csv");
   if (!dataPath) return [];
 
   const raw = fs.readFileSync(/* turbopackIgnore: true */ dataPath, "utf8");
@@ -78,4 +78,38 @@ export function loadDiary(): DiaryEntry[] {
 
   entries.sort((a, b) => b.watchedDate.localeCompare(a.watchedDate));
   return entries;
+}
+
+/** Joins a diary entry to its review by name + the date it was watched. */
+export function reviewKey(name: string, watchedDate: string): string {
+  return `${name}|${watchedDate}`;
+}
+
+/**
+ * Reads reviews.csv (same export, same drop-anywhere-in-data/ search as
+ * diary.csv) and returns review text keyed by reviewKey(name, watchedDate).
+ * Most entries won't have a review — this only covers the ones you wrote
+ * something for.
+ */
+export function loadReviews(): Map<string, string> {
+  const dataPath = findCsv(DATA_DIR, 0, "reviews.csv");
+  const reviews = new Map<string, string>();
+  if (!dataPath) return reviews;
+
+  const raw = fs.readFileSync(/* turbopackIgnore: true */ dataPath, "utf8");
+  const parsed = Papa.parse<Record<string, string>>(raw, {
+    header: true,
+    skipEmptyLines: true,
+  });
+
+  for (const row of parsed.data) {
+    const name = (row["Name"] ?? "").trim();
+    const watchedDate = (row["Watched Date"] || row["Date"] || "").trim();
+    const review = (row["Review"] ?? "").trim();
+    if (name && watchedDate && review) {
+      reviews.set(reviewKey(name, watchedDate), review);
+    }
+  }
+
+  return reviews;
 }

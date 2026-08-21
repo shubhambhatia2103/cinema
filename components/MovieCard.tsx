@@ -60,6 +60,14 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           </span>
           {movie.rating != null && <Stars rating={movie.rating} />}
         </div>
+        {movie.review && (
+          <p
+            title={movie.review}
+            className="line-clamp-2 pt-0.5 text-xs italic text-muted"
+          >
+            &ldquo;{movie.review}&rdquo;
+          </p>
+        )}
       </div>
     </article>
   );
