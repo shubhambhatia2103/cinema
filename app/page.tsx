@@ -14,17 +14,9 @@ export default async function Home() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <header className="mb-12 border-b border-ink/10 pb-8">
-        <div className="flex items-baseline justify-between">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted">
-            shubhambhatia.in
-          </p>
-          <Link
-            href="/stats"
-            className="text-xs uppercase tracking-[0.2em] text-muted underline decoration-ink/20 underline-offset-2 hover:text-ink"
-          >
-            Stats
-          </Link>
-        </div>
+        <p className="text-xs uppercase tracking-[0.2em] text-muted">
+          shubhambhatia.in
+        </p>
         <h1 className="mt-2 font-serif text-4xl text-ink sm:text-5xl">
           Cinema
         </h1>
@@ -40,21 +32,29 @@ export default async function Home() {
           </a>{" "}
           diary.
         </p>
-        <div className="mt-5 flex gap-6 text-sm text-ink/80">
-          <span>
-            <strong className="font-serif text-lg text-ink">
-              {movies.length}
-            </strong>{" "}
-            films logged
-          </span>
-          {avgRating && (
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex gap-6 text-sm text-ink/80">
             <span>
               <strong className="font-serif text-lg text-ink">
-                {avgRating}
+                {movies.length}
               </strong>{" "}
-              avg rating
+              films logged
             </span>
-          )}
+            {avgRating && (
+              <span>
+                <strong className="font-serif text-lg text-ink">
+                  {avgRating}
+                </strong>{" "}
+                avg rating
+              </span>
+            )}
+          </div>
+          <Link
+            href="/stats"
+            className="rounded-md border border-ink/15 bg-card px-3 py-1.5 text-sm text-ink/80 hover:border-ink/30 hover:text-ink"
+          >
+            View stats →
+          </Link>
         </div>
       </header>
 
