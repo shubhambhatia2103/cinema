@@ -7,10 +7,13 @@ out
 .DS_Store
 *.tsbuildinfo
 
-# Letterboxd export: only diary.csv is meant to be public. If you drop
-# the whole unzipped export folder into data/, everything else in it
-# (watchlist, comments, likes, reviews, ...) stays untracked.
+# Letterboxd export: only diary.csv and reviews.csv are meant to be
+# public (review text is shown on the site). If you drop the whole
+# unzipped export folder into data/, everything else in it (watchlist,
+# comments, likes, ratings, watched, ...) stays untracked.
 data/**
 !data/**/
 !data/diary.csv
 !data/**/diary.csv
+!data/reviews.csv
+!data/**/reviews.csv
