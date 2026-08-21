@@ -14,21 +14,61 @@ function groupByYear(movies: Movie[]) {
   return [...groups.entries()];
 }
 
+function distinctYears(movies: Movie[]) {
+  const years = new Set(movies.map((m) => m.watchedDate.slice(0, 4)).filter(Boolean));
+  return [...years].sort().reverse();
+}
+
+function Toggle({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`rounded-md border px-3 py-2 text-sm transition ${
+        active
+          ? "border-accent bg-accent text-paper"
+          : "border-ink/15 bg-card text-ink/80 hover:border-ink/30"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function MovieGrid({ movies }: { movies: Movie[] }) {
   const [query, setQuery] = useState("");
+  const [year, setYear] = useState("");
+  const [topRatedOnly, setTopRatedOnly] = useState(false);
+  const [rewatchOnly, setRewatchOnly] = useState(false);
+
   const trimmed = query.trim().toLowerCase();
-  const isSearching = trimmed.length > 0;
+  const isFiltered = Boolean(trimmed || year || topRatedOnly || rewatchOnly);
+  const years = useMemo(() => distinctYears(movies), [movies]);
 
   const filtered = useMemo(() => {
-    if (!trimmed) return movies;
-    return movies.filter((m) => m.name.toLowerCase().includes(trimmed));
-  }, [movies, trimmed]);
+    return movies.filter((m) => {
+      if (trimmed && !m.name.toLowerCase().includes(trimmed)) return false;
+      if (year && m.watchedDate.slice(0, 4) !== year) return false;
+      if (topRatedOnly && (m.rating == null || m.rating < 4)) return false;
+      if (rewatchOnly && !m.rewatch) return false;
+      return true;
+    });
+  }, [movies, trimmed, year, topRatedOnly, rewatchOnly]);
 
-  const years = useMemo(() => groupByYear(movies), [movies]);
+  const groupedAll = useMemo(() => groupByYear(movies), [movies]);
 
   return (
     <div>
-      <div className="mb-10">
+      <div className="mb-10 flex flex-wrap items-center gap-2">
         <input
           type="search"
           value={query}
@@ -37,11 +77,30 @@ export default function MovieGrid({ movies }: { movies: Movie[] }) {
           aria-label="Search films"
           className="w-full max-w-xs rounded-md border border-ink/15 bg-card px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-ink/30 focus:outline-none"
         />
+        <select
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          aria-label="Filter by year"
+          className="rounded-md border border-ink/15 bg-card px-3 py-2 text-sm text-ink focus:border-ink/30 focus:outline-none"
+        >
+          <option value="">All years</option>
+          {years.map((y) => (
+            <option key={y} value={y}>
+              {y}
+            </option>
+          ))}
+        </select>
+        <Toggle active={topRatedOnly} onClick={() => setTopRatedOnly((v) => !v)}>
+          4★+
+        </Toggle>
+        <Toggle active={rewatchOnly} onClick={() => setRewatchOnly((v) => !v)}>
+          Rewatches
+        </Toggle>
       </div>
 
-      {isSearching ? (
+      {isFiltered ? (
         filtered.length === 0 ? (
-          <p className="text-muted">No films match &ldquo;{query.trim()}&rdquo;.</p>
+          <p className="text-muted">No films match these filters.</p>
         ) : (
           <section>
             <h2 className="mb-4 font-serif text-2xl text-ink/90">
@@ -56,9 +115,9 @@ export default function MovieGrid({ movies }: { movies: Movie[] }) {
         )
       ) : (
         <div className="space-y-12">
-          {years.map(([year, entries]) => (
-            <section key={year}>
-              <h2 className="mb-4 font-serif text-2xl text-ink/90">{year}</h2>
+          {groupedAll.map(([y, entries]) => (
+            <section key={y}>
+              <h2 className="mb-4 font-serif text-2xl text-ink/90">{y}</h2>
               <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
                 {entries.map((movie) => (
                   <MovieCard key={movie.slug} movie={movie} />
