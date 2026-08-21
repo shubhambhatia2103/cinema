@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getMovies } from "@/lib/movies";
 import MovieGrid from "@/components/MovieGrid";
 
@@ -32,29 +31,21 @@ export default async function Home() {
           </a>{" "}
           diary.
         </p>
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex gap-6 text-sm text-ink/80">
+        <div className="mt-5 flex gap-6 text-sm text-ink/80">
+          <span>
+            <strong className="font-serif text-lg text-ink">
+              {movies.length}
+            </strong>{" "}
+            films logged
+          </span>
+          {avgRating && (
             <span>
               <strong className="font-serif text-lg text-ink">
-                {movies.length}
+                {avgRating}
               </strong>{" "}
-              films logged
+              avg rating
             </span>
-            {avgRating && (
-              <span>
-                <strong className="font-serif text-lg text-ink">
-                  {avgRating}
-                </strong>{" "}
-                avg rating
-              </span>
-            )}
-          </div>
-          <Link
-            href="/stats"
-            className="rounded-md border border-ink/15 bg-card px-3 py-1.5 text-sm text-ink/80 hover:border-ink/30 hover:text-ink"
-          >
-            View stats →
-          </Link>
+          )}
         </div>
       </header>
 

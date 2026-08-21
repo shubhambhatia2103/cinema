@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import MovieCard from "./MovieCard";
 import type { Movie } from "@/lib/types";
@@ -58,18 +59,26 @@ export default function MovieGrid({ movies }: { movies: Movie[] }) {
 
   return (
     <div>
-      <div className="mb-10 flex flex-wrap items-center gap-2">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search a film…"
-          aria-label="Search films"
-          className="w-full max-w-xs rounded-md border border-ink/15 bg-card px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-ink/30 focus:outline-none"
-        />
-        <Toggle active={topRatedOnly} onClick={() => setTopRatedOnly((v) => !v)}>
-          4★+
-        </Toggle>
+      <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search a film…"
+            aria-label="Search films"
+            className="flex-1 min-w-0 max-w-xs rounded-md border border-ink/15 bg-card px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-ink/30 focus:outline-none"
+          />
+          <Toggle active={topRatedOnly} onClick={() => setTopRatedOnly((v) => !v)}>
+            4★+
+          </Toggle>
+        </div>
+        <Link
+          href="/stats"
+          className="text-sm text-ink/80 underline decoration-ink/20 underline-offset-2 hover:text-ink"
+        >
+          Stats →
+        </Link>
       </div>
 
       {isFiltered ? (
