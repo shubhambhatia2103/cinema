@@ -15,6 +15,14 @@ function groupByYear(movies: Movie[]) {
   return [...groups.entries()];
 }
 
+function distinctGenres(movies: Movie[]): string[] {
+  const genres = new Set<string>();
+  for (const m of movies) {
+    for (const g of m.genres) genres.add(g);
+  }
+  return [...genres].sort();
+}
+
 function Toggle({
   active,
   onClick,
@@ -43,23 +51,26 @@ function Toggle({
 export default function MovieGrid({ movies }: { movies: Movie[] }) {
   const [query, setQuery] = useState("");
   const [topRatedOnly, setTopRatedOnly] = useState(false);
+  const [genre, setGenre] = useState<string | null>(null);
 
   const trimmed = query.trim().toLowerCase();
-  const isFiltered = Boolean(trimmed || topRatedOnly);
+  const isFiltered = Boolean(trimmed || topRatedOnly || genre);
+  const allGenres = useMemo(() => distinctGenres(movies), [movies]);
 
   const filtered = useMemo(() => {
     return movies.filter((m) => {
       if (trimmed && !m.name.toLowerCase().includes(trimmed)) return false;
       if (topRatedOnly && (m.rating == null || m.rating < 4)) return false;
+      if (genre && !m.genres.includes(genre)) return false;
       return true;
     });
-  }, [movies, trimmed, topRatedOnly]);
+  }, [movies, trimmed, topRatedOnly, genre]);
 
   const groupedAll = useMemo(() => groupByYear(movies), [movies]);
 
   return (
     <div>
-      <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2">
           <input
             type="search"
@@ -80,6 +91,26 @@ export default function MovieGrid({ movies }: { movies: Movie[] }) {
           Stats →
         </Link>
       </div>
+
+      {allGenres.length > 0 && (
+        <div className="mb-10 flex flex-wrap gap-2">
+          {allGenres.map((g) => (
+            <button
+              key={g}
+              type="button"
+              onClick={() => setGenre((cur) => (cur === g ? null : g))}
+              aria-pressed={genre === g}
+              className={`rounded-full border px-3 py-1 text-xs transition ${
+                genre === g
+                  ? "border-accent bg-accent text-paper"
+                  : "border-ink/15 bg-card text-ink/70 hover:border-ink/30"
+              }`}
+            >
+              {g}
+            </button>
+          ))}
+        </div>
+      )}
 
       {isFiltered ? (
         filtered.length === 0 ? (

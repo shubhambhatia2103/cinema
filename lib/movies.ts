@@ -1,8 +1,8 @@
 import { loadDiary, loadReviews, reviewKey } from "./letterboxd";
-import { fetchPosterUrl } from "./tmdb";
+import { fetchTmdbEnrichment } from "./tmdb";
 import type { Movie } from "./types";
 
-const POSTER_CONCURRENCY = 8;
+const ENRICHMENT_CONCURRENCY = 8;
 
 async function mapWithConcurrency<T, R>(
   items: T[],
@@ -29,15 +29,15 @@ export async function getMovies(): Promise<Movie[]> {
   const diary = loadDiary();
   const reviews = loadReviews();
 
-  const posterUrls = await mapWithConcurrency(
+  const enrichments = await mapWithConcurrency(
     diary,
-    POSTER_CONCURRENCY,
-    (entry) => fetchPosterUrl(entry.name, entry.year),
+    ENRICHMENT_CONCURRENCY,
+    (entry) => fetchTmdbEnrichment(entry.name, entry.year),
   );
 
   return diary.map((entry, i) => ({
     ...entry,
-    posterUrl: posterUrls[i],
+    ...enrichments[i],
     review: reviews.get(reviewKey(entry.name, entry.watchedDate)) ?? null,
   }));
 }

@@ -56,9 +56,9 @@ One extra API call per film (cached), same `TMDB_API_KEY` already set on Vercel.
 - [x] **Phase 2 — Ship the stats page.** Pure `diary.csv` math, no new API load.
   - [x] Rating histogram, decade breakdown, watch-day pattern
   - [x] Binge-month timeline (as top-5 busiest months), rewatch rate, highs/lows
-- [ ] **Phase 3 — Enrich the grid.** Extend the existing poster fetch to also cache genre + director.
-  - [ ] Director byline under each card
-  - [ ] Genre chips, filterable
+- [x] **Phase 3 — Enrich the grid.** Extend the existing poster fetch to also cache genre + director.
+  - [x] Director byline under each card
+  - [x] Genre chips, filterable
 - [ ] **Phase 4 — Film detail pages.** Where backdrop, trailer, cast, and TMDB-vs-you comparisons live.
   - [ ] `/film/[slug]` route, linked from every card
   - [ ] Synopsis, cast, trailer embed

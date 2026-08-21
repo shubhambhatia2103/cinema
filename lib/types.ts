@@ -12,4 +12,6 @@ export interface DiaryEntry {
 export interface Movie extends DiaryEntry {
   posterUrl: string | null;
   review: string | null;
+  genres: string[];
+  director: string | null;
 }
