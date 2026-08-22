@@ -1,6 +1,6 @@
 import { loadDiary, loadReviews, reviewKey } from "./letterboxd";
-import { fetchTmdbEnrichment } from "./tmdb";
-import type { Movie } from "./types";
+import { fetchTmdbEnrichment, fetchTrailerKey } from "./tmdb";
+import type { Movie, MovieDetail } from "./types";
 
 const ENRICHMENT_CONCURRENCY = 8;
 
@@ -40,4 +40,29 @@ export async function getMovies(): Promise<Movie[]> {
     ...enrichments[i],
     review: reviews.get(reviewKey(entry.name, entry.watchedDate)) ?? null,
   }));
+}
+
+export function getAllSlugs(): string[] {
+  return loadDiary().map((entry) => entry.slug);
+}
+
+/** Same enrichment as the grid, plus a trailer lookup for the one film. */
+export async function getMovieDetail(
+  slug: string,
+): Promise<MovieDetail | null> {
+  const entry = loadDiary().find((d) => d.slug === slug);
+  if (!entry) return null;
+
+  const enrichment = await fetchTmdbEnrichment(entry.name, entry.year);
+  const trailerKey = enrichment.tmdbId
+    ? await fetchTrailerKey(enrichment.tmdbId)
+    : null;
+  const reviews = loadReviews();
+
+  return {
+    ...entry,
+    ...enrichment,
+    review: reviews.get(reviewKey(entry.name, entry.watchedDate)) ?? null,
+    trailerKey,
+  };
 }

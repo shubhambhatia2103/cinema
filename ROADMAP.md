@@ -59,9 +59,9 @@ One extra API call per film (cached), same `TMDB_API_KEY` already set on Vercel.
 - [x] **Phase 3 — Enrich the grid.** Extend the existing poster fetch to also cache genre + director.
   - [x] Director byline under each card
   - [x] Genre chips, filterable
-- [ ] **Phase 4 — Film detail pages.** Where backdrop, trailer, cast, and TMDB-vs-you comparisons live.
-  - [ ] `/film/[slug]` route, linked from every card
-  - [ ] Synopsis, cast, trailer embed
+- [x] **Phase 4 — Film detail pages.** Where backdrop, trailer, cast, and TMDB-vs-you comparisons live.
+  - [x] `/film/[slug]` route, linked from every card
+  - [x] Synopsis, cast, trailer embed
 - [ ] **Phase 5 — Collections.** Needs Phase 4's detail pages to link into.
   - [ ] Franchise grouping via TMDB collections
   - [ ] "Completed" vs. "in progress" state
