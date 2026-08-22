@@ -198,3 +198,93 @@ export async function fetchTrailerKey(tmdbId: number): Promise<string | null> {
     return null;
   }
 }
+
+interface TmdbMovieDetails {
+  belongs_to_collection: { id: number; name: string } | null;
+}
+
+export interface TmdbCollectionRef {
+  id: number;
+  name: string;
+}
+
+/**
+ * Looks up whether a film belongs to a TMDB collection (a franchise
+ * grouping — e.g. all 4 John Wicks). Needs the movie details endpoint,
+ * which isn't part of fetchTmdbEnrichment's search+credits calls, so
+ * this is its own call, made only when building the collections page.
+ */
+export async function fetchCollectionRef(
+  tmdbId: number,
+): Promise<TmdbCollectionRef | null> {
+  if (!TMDB_API_KEY) return null;
+
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/movie/${tmdbId}?api_key=${TMDB_API_KEY}`,
+      { next: { revalidate: THIRTY_DAYS } },
+    );
+    if (!res.ok) return null;
+
+    const data = (await res.json()) as TmdbMovieDetails;
+    const collection = data.belongs_to_collection;
+    return collection ? { id: collection.id, name: collection.name } : null;
+  } catch {
+    return null;
+  }
+}
+
+interface TmdbCollectionPart {
+  id: number;
+  title: string;
+  poster_path: string | null;
+  release_date: string | null;
+}
+
+interface TmdbCollectionResponse {
+  id: number;
+  name: string;
+  parts: TmdbCollectionPart[];
+}
+
+export interface CollectionPartInfo {
+  tmdbId: number;
+  title: string;
+  year: number | null;
+  posterUrl: string | null;
+}
+
+export interface CollectionInfo {
+  id: number;
+  name: string;
+  parts: CollectionPartInfo[];
+}
+
+/** Every film in a TMDB collection, oldest first. */
+export async function fetchCollectionParts(
+  collectionId: number,
+): Promise<CollectionInfo | null> {
+  if (!TMDB_API_KEY) return null;
+
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/collection/${collectionId}?api_key=${TMDB_API_KEY}`,
+      { next: { revalidate: THIRTY_DAYS } },
+    );
+    if (!res.ok) return null;
+
+    const data = (await res.json()) as TmdbCollectionResponse;
+    const parts = (data.parts ?? [])
+      .map((p) => ({
+        tmdbId: p.id,
+        title: p.title,
+        year: p.release_date ? Number(p.release_date.slice(0, 4)) || null : null,
+        posterUrl: p.poster_path ? `${TMDB_IMAGE_BASE}${p.poster_path}` : null,
+      }))
+      .sort((a, b) => (a.year ?? 0) - (b.year ?? 0));
+
+    return { id: data.id, name: data.name, parts };
+  } catch {
+    return null;
+  }
+}
