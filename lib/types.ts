@@ -14,4 +14,13 @@ export interface Movie extends DiaryEntry {
   review: string | null;
   genres: string[];
   director: string | null;
+  tmdbId: number | null;
+  backdropUrl: string | null;
+  overview: string | null;
+  voteAverage: number | null;
+  cast: string[];
+}
+
+export interface MovieDetail extends Movie {
+  trailerKey: string | null;
 }
