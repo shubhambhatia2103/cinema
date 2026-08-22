@@ -4,7 +4,7 @@ import type { Movie, MovieDetail } from "./types";
 
 const ENRICHMENT_CONCURRENCY = 8;
 
-async function mapWithConcurrency<T, R>(
+export async function mapWithConcurrency<T, R>(
   items: T[],
   limit: number,
   fn: (item: T) => Promise<R>,

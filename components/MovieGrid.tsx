@@ -84,12 +84,20 @@ export default function MovieGrid({ movies }: { movies: Movie[] }) {
             4★+
           </Toggle>
         </div>
-        <Link
-          href="/stats"
-          className="text-sm text-ink/80 underline decoration-ink/20 underline-offset-2 hover:text-ink"
-        >
-          Stats →
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/collections"
+            className="text-sm text-ink/80 underline decoration-ink/20 underline-offset-2 hover:text-ink"
+          >
+            Collections
+          </Link>
+          <Link
+            href="/stats"
+            className="text-sm text-ink/80 underline decoration-ink/20 underline-offset-2 hover:text-ink"
+          >
+            Stats →
+          </Link>
+        </div>
       </div>
 
       {allGenres.length > 0 && (
