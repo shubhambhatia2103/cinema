@@ -288,3 +288,65 @@ export async function fetchCollectionParts(
     return null;
   }
 }
+
+interface TmdbRecommendationResult {
+  id: number;
+  title: string;
+  poster_path: string | null;
+  release_date: string | null;
+}
+
+interface TmdbRecommendationsResponse {
+  results: TmdbRecommendationResult[];
+}
+
+export interface RecommendedFilmInfo {
+  tmdbId: number;
+  title: string;
+  year: number | null;
+  posterUrl: string | null;
+}
+
+const RECOMMENDATION_COUNT = 4;
+
+async function fetchMovieList(
+  tmdbId: number,
+  endpoint: "recommendations" | "similar",
+): Promise<TmdbRecommendationResult[]> {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${tmdbId}/${endpoint}?api_key=${TMDB_API_KEY}`,
+    { next: { revalidate: THIRTY_DAYS } },
+  );
+  if (!res.ok) return [];
+  const data = (await res.json()) as TmdbRecommendationsResponse;
+  return data.results ?? [];
+}
+
+/**
+ * A handful of films similar to this one, straight from TMDB's own
+ * catalog — regardless of whether you've logged them. Prefers TMDB's
+ * "recommendations" (usually the better-curated engine), falling back
+ * to "similar" if that comes back empty. Only called from the film
+ * detail page, one extra call per film, paid once at build time.
+ */
+export async function fetchRecommendations(
+  tmdbId: number,
+): Promise<RecommendedFilmInfo[]> {
+  if (!TMDB_API_KEY) return [];
+
+  try {
+    let results = await fetchMovieList(tmdbId, "recommendations");
+    if (results.length === 0) {
+      results = await fetchMovieList(tmdbId, "similar");
+    }
+
+    return results.slice(0, RECOMMENDATION_COUNT).map((r) => ({
+      tmdbId: r.id,
+      title: r.title,
+      year: r.release_date ? Number(r.release_date.slice(0, 4)) || null : null,
+      posterUrl: r.poster_path ? `${TMDB_IMAGE_BASE}${r.poster_path}` : null,
+    }));
+  } catch {
+    return [];
+  }
+}

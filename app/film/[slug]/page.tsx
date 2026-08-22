@@ -156,6 +156,64 @@ export default async function FilmPage({
           </div>
         </div>
       )}
+
+      {movie.recommendations.length > 0 && (
+        <div className="mt-8">
+          <h2 className="mb-2 text-xs uppercase tracking-wide text-muted">
+            Similar films
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            {movie.recommendations.map((r) => {
+              const card = (
+                <div className="group">
+                  <div className="relative aspect-[2/3] overflow-hidden rounded-md bg-card ring-1 ring-ink/10">
+                    {r.posterUrl ? (
+                      <Image
+                        src={r.posterUrl}
+                        alt={`${r.title} poster`}
+                        fill
+                        sizes="(min-width: 640px) 25vw, 50vw"
+                        className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full flex-col items-center justify-center p-3 text-center">
+                        <span className="font-serif text-sm leading-tight text-ink/90">
+                          {r.title}
+                        </span>
+                      </div>
+                    )}
+                    {r.slug && (
+                      <span className="absolute left-2 top-2 rounded-full bg-ink/80 px-2 py-0.5 text-[10px] uppercase tracking-wide text-paper/90">
+                        Watched
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-2 truncate text-sm text-ink/80">
+                    {r.title}
+                  </p>
+                  <p className="text-xs text-muted">{r.year || ""}</p>
+                </div>
+              );
+
+              return r.slug ? (
+                <Link key={r.tmdbId} href={`/film/${r.slug}`}>
+                  {card}
+                </Link>
+              ) : (
+                <a
+                  key={r.tmdbId}
+                  href={`https://www.themoviedb.org/movie/${r.tmdbId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Not in your log — opens on TMDB"
+                >
+                  {card}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </main>
   );
 }

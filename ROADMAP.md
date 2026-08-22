@@ -65,3 +65,7 @@ One extra API call per film (cached), same `TMDB_API_KEY` already set on Vercel.
 - [x] **Phase 5 — Collections.** Needs Phase 4's detail pages to link into.
   - [x] Franchise grouping via TMDB collections
   - [x] "Completed" vs. "in progress" state
+- [x] **Post-Phase-5 — Similar films.** A "Similar films" section at the bottom of each
+  detail page, 4 films from TMDB's `/recommendations` (falling back to `/similar`),
+  regardless of whether you've logged them — anything you have shows a "Watched" badge
+  and links to its own page; anything you haven't links out to TMDB instead.
