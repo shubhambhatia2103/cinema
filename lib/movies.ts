@@ -1,5 +1,5 @@
 import { loadDiary, loadReviews, reviewKey } from "./letterboxd";
-import { fetchTmdbEnrichment, fetchTrailerKey } from "./tmdb";
+import { fetchRecommendations, fetchTmdbEnrichment, fetchTrailerKey } from "./tmdb";
 import type { Movie, MovieDetail } from "./types";
 
 const ENRICHMENT_CONCURRENCY = 8;
@@ -54,15 +54,35 @@ export async function getMovieDetail(
   if (!entry) return null;
 
   const enrichment = await fetchTmdbEnrichment(entry.name, entry.year);
-  const trailerKey = enrichment.tmdbId
-    ? await fetchTrailerKey(enrichment.tmdbId)
-    : null;
   const reviews = loadReviews();
+
+  if (!enrichment.tmdbId) {
+    return {
+      ...entry,
+      ...enrichment,
+      review: reviews.get(reviewKey(entry.name, entry.watchedDate)) ?? null,
+      trailerKey: null,
+      recommendations: [],
+    };
+  }
+
+  const [trailerKey, recs, allMovies] = await Promise.all([
+    fetchTrailerKey(enrichment.tmdbId),
+    fetchRecommendations(enrichment.tmdbId),
+    getMovies(),
+  ]);
+
+  const slugByTmdbId = new Map(allMovies.map((m) => [m.tmdbId, m.slug]));
+  const recommendations = recs.map((r) => ({
+    ...r,
+    slug: slugByTmdbId.get(r.tmdbId) ?? null,
+  }));
 
   return {
     ...entry,
     ...enrichment,
     review: reviews.get(reviewKey(entry.name, entry.watchedDate)) ?? null,
     trailerKey,
+    recommendations,
   };
 }

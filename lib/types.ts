@@ -21,6 +21,16 @@ export interface Movie extends DiaryEntry {
   cast: string[];
 }
 
+export interface RecommendedFilm {
+  tmdbId: number;
+  title: string;
+  year: number | null;
+  posterUrl: string | null;
+  /** Set when this is already one of your own diary entries. */
+  slug: string | null;
+}
+
 export interface MovieDetail extends Movie {
   trailerKey: string | null;
+  recommendations: RecommendedFilm[];
 }
