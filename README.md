@@ -17,7 +17,7 @@ Part of a small series of projects on [shubhambhatia.in](https://shubhambhatia.i
 
 <br>
 
-<img src="docs/screenshots/home.png" alt="Home page — the film log, with search and genre filters" width="100%">
+<img src="docs/home.png" alt="Home page — the film log, with search and genre filters" width="100%">
 
 <br>
 
@@ -38,8 +38,8 @@ TMDB.
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/film-detail.png" alt="Film detail page"></td>
-<td width="50%"><img src="docs/screenshots/stats.png" alt="Stats page"></td>
+<td width="50%"><img src="docs/film-detail.png" alt="Film detail page"></td>
+<td width="50%"><img src="docs/stats.png" alt="Stats page"></td>
 </tr>
 <tr>
 <td align="center"><sub>Film detail page</sub></td>
@@ -47,7 +47,7 @@ TMDB.
 </tr>
 </table>
 
-<img src="docs/screenshots/collections.png" alt="Collections page" width="100%">
+<img src="docs/collections.png" alt="Collections page" width="100%">
 
 <p align="center"><sub>Collections page</sub></p>
 
